@@ -74,10 +74,12 @@ type Advertisement struct {
 	TxPowerLevel     int
 	Connectable      bool
 	SolicitedService []UUID
+	Raw              []byte
 }
 
 // This is only used in Linux port.
 func (a *Advertisement) unmarshall(b []byte) error {
+	a.Raw = b
 
 	// Utility function for creating a list of uuids.
 	uuidList := func(u []UUID, d []byte, w int) []UUID {
